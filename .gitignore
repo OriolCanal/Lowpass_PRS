@@ -1,0 +1,7 @@
+work/
+results/
+data/
+.nextflow.log*
+.nextflow/
+glimpse_reference/
+singularity_images/
