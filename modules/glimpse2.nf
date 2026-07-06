@@ -1,12 +1,12 @@
 process GLIMPSE2_CHUNK {
     tag "$chr"
     label 'process_low'
-    container 'quay.io/biocontainers/glimpse:2.0.1--ha5d29c5_3'
+    container 'quay.io/biocontainers/glimpse-bio:2.0.1--ha5d29c5_3'
 
     input:
     val chr
     path ref_sites
-    path ref_sites_tbi
+    path ref_sites_csi
     path genetic_map
 
     output:
@@ -17,6 +17,7 @@ process GLIMPSE2_CHUNK {
     GLIMPSE2_chunk --input ${ref_sites} \\
                    --region ${chr} \\
                    --map ${genetic_map} \\
+                   --sequential \\
                    --output chunks.${chr}.txt
     """
 }
@@ -24,12 +25,12 @@ process GLIMPSE2_CHUNK {
 process GLIMPSE2_SPLIT_REFERENCE {
     tag "${chr}_${chunk_id}"
     label 'process_medium'
-    container 'quay.io/biocontainers/glimpse:2.0.1--ha5d29c5_3'
+    container 'quay.io/biocontainers/glimpse-bio:2.0.1--ha5d29c5_3'
 
     input:
     tuple val(chr), val(chunk_id), val(irg), val(org)
     path ref_panel
-    path ref_panel_tbi
+    path ref_panel_csi
     path genetic_map
 
     output:
@@ -49,11 +50,10 @@ process GLIMPSE2_SPLIT_REFERENCE {
 process GLIMPSE2_PHASE {
     tag "${meta.id}_${chr}_${irg.replaceAll(':', '_')}"
     label 'process_high'
-    container 'quay.io/biocontainers/glimpse:2.0.1--ha5d29c5_3'
+    container 'quay.io/biocontainers/glimpse-bio:2.0.1--ha5d29c5_3'
 
     input:
-    // Reem el BCF de likelihoods calculat per bcftools mpileup
-    tuple val(meta), path(sample_bcf), path(sample_csi), val(chr), val(irg), val(org), path(bin_ref)
+    tuple val(meta), path(bam), path(bai), val(chr), val(irg), val(org), path(bin_ref)
 
     output:
     tuple val(meta), val(chr), path("*.bcf"), path("*.bcf.csi"), emit: chunk_bcf
@@ -61,7 +61,7 @@ process GLIMPSE2_PHASE {
     script:
     def prefix = "${meta.id}_${chr}_phased_${org.replaceAll(/[:\-]/, '_')}"
     """
-    GLIMPSE2_phase --input ${sample_bcf} \\
+    GLIMPSE2_phase --bam-file ${bam} \\
                    --reference ${bin_ref} \\
                    --output ${prefix}.bcf \\
                    --threads ${task.cpus}
@@ -73,10 +73,9 @@ process GLIMPSE2_PHASE {
 process GLIMPSE2_LIGATE {
     tag "${meta.id}_${chr}"
     label 'process_medium'
-    container 'quay.io/biocontainers/glimpse:2.0.1--ha5d29c5_3'
+    container 'quay.io/biocontainers/glimpse-bio:2.0.1--ha5d29c5_3'
 
     input:
-    // Agrupem tots els sub-BCFs corresponents al mateix pacient i mateix cromosoma
     tuple val(meta), val(chr), path(chunk_bcfs), path(chunk_csis)
 
     output:
@@ -86,12 +85,10 @@ process GLIMPSE2_LIGATE {
     def list_file = "chunks_list_${meta.id}_${chr}.txt"
     def output_name = "${meta.id}_${chr}_imputed"
     """
-    # Generar llista ordenada de bcf de fragments de manera natural (1, 2, 10, etc.)
     ls -1v ${chunk_bcfs} > ${list_file}
 
     GLIMPSE2_ligate --input ${list_file} --output ${output_name}.bcf
     
-    # Conversió a VCF complint amb l'estàndard de sortida del pipeline
     bcftools view ${output_name}.bcf -Oz -o ${output_name}.vcf.gz --threads ${task.cpus}
     bcftools index -t ${output_name}.vcf.gz --threads ${task.cpus}
     """

@@ -1,7 +1,7 @@
 process FASTP {
     tag "$meta.id"
     label 'process_high'
-    container 'quay.io/biocontainers/fastp:1.3.3--h43da1c4_0'
+    container 'quay.io/biocontainers/fastp:1.3.6--h43da1c4_0'
 
     input:  tuple val(meta), path(reads)
     output: tuple val(meta), path("*.trimmed.fastq.gz"), emit: reads

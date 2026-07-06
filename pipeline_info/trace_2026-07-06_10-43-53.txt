@@ -1,0 +1,48 @@
+task_id	name	status	exit	realtime	%cpu	rss	workdir
+6	FASTP (RB21583)	COMPLETED	0	7m 47s	295.4%	1.1 GB	/home/ocanal/Desktop/nextflow_lowpass/work/bd/97a354a1e8e8c353efbcb744903884
+4	GLIMPSE2_CHUNK (chr3)	COMPLETED	0	39s	89.0%	361.4 MB	/home/ocanal/Desktop/nextflow_lowpass/work/be/7f61745610ae46a5ffda36ecf014b2
+1	GLIMPSE2_CHUNK (chr1)	COMPLETED	0	45s	89.5%	423.4 MB	/home/ocanal/Desktop/nextflow_lowpass/work/f9/203a8ae912b0cc2247d5e138413c83
+5	GLIMPSE2_CHUNK (chr4)	COMPLETED	0	34s	98.4%	347.1 MB	/home/ocanal/Desktop/nextflow_lowpass/work/4d/62c7c3cdfe90bb64d03c340db0129e
+3	GLIMPSE2_CHUNK (chr2)	COMPLETED	0	43s	96.8%	442.8 MB	/home/ocanal/Desktop/nextflow_lowpass/work/06/204f747b5b1c447b2c222e80e0da55
+9	GLIMPSE2_CHUNK (chr7)	COMPLETED	0	29s	98.1%	292.7 MB	/home/ocanal/Desktop/nextflow_lowpass/work/da/6e89fe0ddc6876018d9eb4b70df2db
+10	GLIMPSE2_CHUNK (chr8)	COMPLETED	0	27s	97.1%	284 MB	/home/ocanal/Desktop/nextflow_lowpass/work/3f/f9edde3d11227744e018f868aa84a4
+8	GLIMPSE2_CHUNK (chr6)	COMPLETED	0	32s	94.4%	342.3 MB	/home/ocanal/Desktop/nextflow_lowpass/work/1b/b19bc0de5402fd8779328d72c3f7e4
+7	GLIMPSE2_CHUNK (chr5)	COMPLETED	0	33s	93.6%	325.9 MB	/home/ocanal/Desktop/nextflow_lowpass/work/6f/80a193a7e2504cfcc51ca8c7af4fac
+12	GLIMPSE2_CHUNK (chr10)	COMPLETED	0	25s	95.7%	228.8 MB	/home/ocanal/Desktop/nextflow_lowpass/work/f1/897ee65e035b752518644a8b131563
+11	GLIMPSE2_CHUNK (chr9)	COMPLETED	0	23s	94.0%	232.2 MB	/home/ocanal/Desktop/nextflow_lowpass/work/58/f33a913b5e59dcda4289178732f61f
+13	GLIMPSE2_CHUNK (chr11)	COMPLETED	0	25s	94.4%	221.7 MB	/home/ocanal/Desktop/nextflow_lowpass/work/43/aadefac6f088688f363c41d369f128
+15	GLIMPSE2_CHUNK (chr13)	COMPLETED	0	19s	96.0%	171.8 MB	/home/ocanal/Desktop/nextflow_lowpass/work/8b/29c982834d0da4b26d8cf8b0d32bd7
+14	GLIMPSE2_CHUNK (chr12)	COMPLETED	0	23s	97.9%	234.7 MB	/home/ocanal/Desktop/nextflow_lowpass/work/22/e02bff01612a3da2c976bee02d75f5
+16	GLIMPSE2_CHUNK (chr14)	COMPLETED	0	16s	98.4%	125.4 MB	/home/ocanal/Desktop/nextflow_lowpass/work/b1/7ab4bb84e18858af97787773047aaf
+17	GLIMPSE2_CHUNK (chr15)	COMPLETED	0	15s	98.4%	125.6 MB	/home/ocanal/Desktop/nextflow_lowpass/work/e9/9e3f73efc604424b4a39367adfbda1
+18	GLIMPSE2_CHUNK (chr16)	COMPLETED	0	16s	98.2%	184.3 MB	/home/ocanal/Desktop/nextflow_lowpass/work/14/b0a597a76a21ce20cf502e4dcea90d
+19	GLIMPSE2_CHUNK (chr17)	COMPLETED	0	14s	97.4%	121.5 MB	/home/ocanal/Desktop/nextflow_lowpass/work/04/ecd39461a7051c4209da70fbdd92fa
+20	GLIMPSE2_CHUNK (chr18)	COMPLETED	0	14s	97.5%	121.4 MB	/home/ocanal/Desktop/nextflow_lowpass/work/a7/6a93ddab98e0c5702011a67164f831
+23	GLIMPSE2_CHUNK (chr21)	COMPLETED	0	8s	85.1%	81.4 MB	/home/ocanal/Desktop/nextflow_lowpass/work/04/57b9fa335bda6f88843689cac83b5c
+21	GLIMPSE2_CHUNK (chr19)	COMPLETED	0	12s	90.6%	115.5 MB	/home/ocanal/Desktop/nextflow_lowpass/work/e4/e53b0cf801b5ffb209a512c1a26a30
+24	GLIMPSE2_CHUNK (chr22)	COMPLETED	0	5s	94.7%	53.7 MB	/home/ocanal/Desktop/nextflow_lowpass/work/98/af097d2615f9d6f36eedca43f860e8
+22	GLIMPSE2_CHUNK (chr20)	COMPLETED	0	13s	93.2%	120.4 MB	/home/ocanal/Desktop/nextflow_lowpass/work/20/964f09efdb4a78c233d42c882fd47d
+27	GLIMPSE2_SPLIT_REFERENCE (chr1_0)	COMPLETED	0	5s	80.2%	66.4 MB	/home/ocanal/Desktop/nextflow_lowpass/work/b4/ece6958d376e4b27cd0fe9b953eeb3
+26	GLIMPSE2_SPLIT_REFERENCE (chr3_0)	COMPLETED	0	5s	74.5%	62.5 MB	/home/ocanal/Desktop/nextflow_lowpass/work/00/e969a49444f60bb2de84fb79dc1acf
+29	GLIMPSE2_SPLIT_REFERENCE (chr2_0)	COMPLETED	0	5s	75.4%	53.4 MB	/home/ocanal/Desktop/nextflow_lowpass/work/91/c07753482abc250db7e84a0f7c69b4
+28	GLIMPSE2_SPLIT_REFERENCE (chr4_0)	COMPLETED	0	8s	64.3%	74.7 MB	/home/ocanal/Desktop/nextflow_lowpass/work/cb/b2fcfdd350ba06190f36a3dd807cc2
+30	GLIMPSE2_SPLIT_REFERENCE (chr7_0)	COMPLETED	0	6s	72.9%	70 MB	/home/ocanal/Desktop/nextflow_lowpass/work/79/af0baa08d6a676bbc4d6d938efeb1f
+31	GLIMPSE2_SPLIT_REFERENCE (chr8_0)	COMPLETED	0	7s	64.9%	67 MB	/home/ocanal/Desktop/nextflow_lowpass/work/c2/b56b84c8349ba667c6897ad3e15a1a
+32	GLIMPSE2_SPLIT_REFERENCE (chr6_0)	COMPLETED	0	6s	62.3%	54.2 MB	/home/ocanal/Desktop/nextflow_lowpass/work/a9/b824641f01e6b76b471820d0281195
+33	GLIMPSE2_SPLIT_REFERENCE (chr5_0)	COMPLETED	0	6s	61.5%	61.5 MB	/home/ocanal/Desktop/nextflow_lowpass/work/e3/a759baa4ca32017ff51ed37cba78e9
+36	GLIMPSE2_SPLIT_REFERENCE (chr11_0)	COMPLETED	0	6s	55.9%	53.1 MB	/home/ocanal/Desktop/nextflow_lowpass/work/42/95fa986fee535a9606dec6ecac2c1b
+35	GLIMPSE2_SPLIT_REFERENCE (chr9_0)	COMPLETED	0	7s	62.4%	64.7 MB	/home/ocanal/Desktop/nextflow_lowpass/work/f4/5c674956b11b1341650bfa43669b45
+34	GLIMPSE2_SPLIT_REFERENCE (chr10_0)	COMPLETED	0	9s	43.4%	59.6 MB	/home/ocanal/Desktop/nextflow_lowpass/work/0a/bd3bfbfa80039e33878130199f69f2
+40	GLIMPSE2_SPLIT_REFERENCE (chr15_0)	COMPLETED	0	5s	49.3%	39.5 MB	/home/ocanal/Desktop/nextflow_lowpass/work/09/8f2ffcc744d9509b2e984e690efc3a
+38	GLIMPSE2_SPLIT_REFERENCE (chr12_0)	COMPLETED	0	6s	47.6%	49.8 MB	/home/ocanal/Desktop/nextflow_lowpass/work/49/24ff1db0c7d0498249d2df458db0ae
+39	GLIMPSE2_SPLIT_REFERENCE (chr14_0)	COMPLETED	0	7s	50.8%	54.2 MB	/home/ocanal/Desktop/nextflow_lowpass/work/f8/23a8af65e492e20f217a06a955ae59
+37	GLIMPSE2_SPLIT_REFERENCE (chr13_0)	COMPLETED	0	12s	59.7%	113.7 MB	/home/ocanal/Desktop/nextflow_lowpass/work/ed/cb95c9d21306e94fc3b5c47d653fb5
+41	GLIMPSE2_SPLIT_REFERENCE (chr16_0)	COMPLETED	0	5s	77.1%	60.2 MB	/home/ocanal/Desktop/nextflow_lowpass/work/af/2c0c375a2d205d7e801bce2535d5cb
+42	GLIMPSE2_SPLIT_REFERENCE (chr17_0)	COMPLETED	0	5s	70.1%	59.4 MB	/home/ocanal/Desktop/nextflow_lowpass/work/06/ad87c64a162e76f2c4f03a472a69fc
+43	GLIMPSE2_SPLIT_REFERENCE (chr18_0)	COMPLETED	0	5s	57.8%	47.7 MB	/home/ocanal/Desktop/nextflow_lowpass/work/a7/bd0498e6eba9a8802a21ccd6c297d6
+47	GLIMPSE2_SPLIT_REFERENCE (chr20_0)	COMPLETED	0	4s	69.6%	46.3 MB	/home/ocanal/Desktop/nextflow_lowpass/work/d9/a4bba9ea92c898c4a371c90a275bf6
+45	GLIMPSE2_SPLIT_REFERENCE (chr19_0)	COMPLETED	0	5s	75.6%	58 MB	/home/ocanal/Desktop/nextflow_lowpass/work/f0/11b599c1f082804e0ca0b9b3ccfd09
+44	GLIMPSE2_SPLIT_REFERENCE (chr21_0)	COMPLETED	0	9s	80.0%	106.3 MB	/home/ocanal/Desktop/nextflow_lowpass/work/6b/e78a0e73fb40a8b1004e92fe5838a6
+46	GLIMPSE2_SPLIT_REFERENCE (chr22_0)	COMPLETED	0	7s	80.1%	90.2 MB	/home/ocanal/Desktop/nextflow_lowpass/work/cb/e1cec7e67c79275d61124a69afa996
+2	FASTP (RB21448)	COMPLETED	0	6m 6s	283.6%	1.2 GB	/home/ocanal/Desktop/nextflow_lowpass/work/6e/d9cb9f0c49cf774de0686982fde5e6
+25	BWAMEM2_ALIGN (RB21583)	COMPLETED	0	3h 39m 48s	322.2%	20.9 GB	/home/ocanal/Desktop/nextflow_lowpass/work/6b/81c5edd5cb93a7caeaa3131367efb1

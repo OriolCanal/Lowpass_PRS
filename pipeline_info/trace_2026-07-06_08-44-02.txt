@@ -1,0 +1,2 @@
+task_id	name	status	exit	realtime	%cpu	rss	workdir
+6	FASTP (RB21448)	ABORTED	-	-	-	-	/home/ocanal/Desktop/nextflow_lowpass/work/ff/2a52340ecc5548f6a62ef8992a63a7

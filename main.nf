@@ -36,7 +36,7 @@ workflow {
 
     // 5. Genotype Likelihood Generation
     // Generates un-called BCF files containing raw genotype probabilities
-    // BCFTOOLS_MPILEUP(PICARD_MARKDUPLICATES.out.bam_and_index, ch_fasta)
+    BCFTOOLS_MPILEUP(PICARD_MARKDUPLICATES.out.bam_and_index, ch_fasta)
 
     ch_fastp_metrics  = FASTP.out.json.collect { it[1] }
     ch_picard_metrics = PICARD_MARKDUPLICATES.out.metrics.collect { it[1] }
@@ -55,8 +55,8 @@ workflow {
 
     // Preparació dels canals de referències basats en patrons parametritzats
     // Nota: params.ref_dir s'ha de passar al config o CLI
-    ch_ref_sites = ch_chromosomes.map { chr -> [ chr, file("${params.ref_dir}/1000GP.${chr}.sites.vcf.gz"), file("${params.ref_dir}/1000GP.${chr}.noNA12878.sites.vcf.gz.tbi") ] }
-    ch_ref_panels = ch_chromosomes.map { chr -> [ chr, file("${params.ref_dir}/1000GP.${chr}.bcf"), file("${params.ref_dir}/1000GP.${chr}.noNA12878.bcf.csi") ] }
+    ch_ref_sites = ch_chromosomes.map { chr -> [ chr, file("${params.ref_dir}/1000GP.${chr}.sites.vcf.gz"), file("${params.ref_dir}/1000GP.${chr}.sites.vcf.gz.csi") ] }
+    ch_ref_panels = ch_chromosomes.map { chr -> [ chr, file("${params.ref_dir}/1000GP.${chr}.bcf"), file("${params.ref_dir}/1000GP.${chr}.bcf.csi") ] }
     ch_maps = ch_chromosomes.map { chr -> [ chr, file("${params.map_dir}/${chr}.b38.gmap.gz") ] }
 
     // PAS A: Executar generació de Chunks genòmics per cada cromosoma
@@ -69,7 +69,9 @@ workflow {
     )
 
     // PAS B: Parsejar dinàmicament els fitxers de text de fragments genònics
+    // Corregido: Extraemos solo el archivo del tuple [chr, file] mediante .map { it[1] }
     ch_parsed_chunks = GLIMPSE2_CHUNK.out.chunks
+        .map { chr, file -> file }
         .splitText() { line ->
             def tokens = line.trim().split(/\s+/)
             return [tokens[1], tokens[0], tokens[2], tokens[3]] // [chr, chunk_id, irg, org]
@@ -86,16 +88,15 @@ workflow {
     )
 
     // PAS D: Llançament Massiu en Paral·lel de la Fase de Fesat / Imputació
-    // Multipliquem el BCF de la mostra de bcftools pels binaris de referència de cada finestra genòmica
-    ch_phase_input = BCFTOOLS_MPILEUP.out.bcf_and_index // [meta, bcf, csi]
-        .combine(GLIMPSE2_SPLIT_REFERENCE.out.bin_ref)   // [meta, bcf, csi, chr, irg, org, bin_ref]
+    // Conectamos los BAM/BAI mapeados directamente con los binaris de GLIMPSE2
+    ch_phase_input = PICARD_MARKDUPLICATES.out.bam_and_index // Estructura esperada: [meta, bam, bai]
+        .combine(GLIMPSE2_SPLIT_REFERENCE.out.bin_ref)       // Cruce masivo: [meta, bam, bai, chr, irg, org, bin_ref]
 
     GLIMPSE2_PHASE(ch_phase_input)
 
     // PAS E: Reagrupament i Lligament (Ligate) dels fragments imputats
-    // Agrupem per pacients i per cromosoma de manera independent
     ch_ligate_input = GLIMPSE2_PHASE.out.chunk_bcf
-        .groupTuple(by: [0, 1]) // Agrupa per [meta, chr] col·leccionant tots els bcfs de les finestres
+        .groupTuple(by: [0, 1]) 
 
     GLIMPSE2_LIGATE(ch_ligate_input)
 
