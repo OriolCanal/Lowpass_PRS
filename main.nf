@@ -12,6 +12,7 @@ include { GLIMPSE2_CHUNK;
           GLIMPSE2_PHASE; 
           GLIMPSE2_LIGATE        } from './modules/glimpse2'// include { PLINK2_PRS             } from './modules/plink'
 
+include { GWAS_ANALYSIS_TRACK    } from './subworkflows/gwas_analysis'
 workflow {
     // 1. Create input channel from your folder structure
     // Automatically extracts sample ID from filename or path
@@ -36,7 +37,7 @@ workflow {
 
     // 5. Genotype Likelihood Generation
     // Generates un-called BCF files containing raw genotype probabilities
-    BCFTOOLS_MPILEUP(PICARD_MARKDUPLICATES.out.bam_and_index, ch_fasta)
+    // BCFTOOLS_MPILEUP(PICARD_MARKDUPLICATES.out.bam_and_index, ch_fasta)
 
     ch_fastp_metrics  = FASTP.out.json.collect { it[1] }
     ch_picard_metrics = PICARD_MARKDUPLICATES.out.metrics.collect { it[1] }
@@ -99,6 +100,14 @@ workflow {
         .groupTuple(by: [0, 1]) 
 
     GLIMPSE2_LIGATE(ch_ligate_input)
+
+    // ch_phenotypes_file = file(params.phenotypes, checkIfExists: true)
+    
+    // GWAS_ANALYSIS_TRACK(
+    //     GLIMPSE2_LIGATE.out.imputed_vcf, 
+    //     ch_phenotypes_file
+    // )
+// }
 
     // El resultat final unificat de tota la genòmica del pacient es troba a:
     // GLIMPSE2_LIGATE.out.imputed_vcf

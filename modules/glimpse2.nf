@@ -65,8 +65,6 @@ process GLIMPSE2_PHASE {
                    --reference ${bin_ref} \\
                    --output ${prefix}.bcf \\
                    --threads ${task.cpus}
-
-    bcftools index -f ${prefix}.bcf --threads ${task.cpus}
     """
 }
 
@@ -79,7 +77,7 @@ process GLIMPSE2_LIGATE {
     tuple val(meta), val(chr), path(chunk_bcfs), path(chunk_csis)
 
     output:
-    tuple val(meta), path("${meta.id}_${chr}_imputed.vcf.gz"), emit: imputed_vcf
+    tuple val(meta), path("${meta.id}_${chr}_imputed.vcf.gz"), path("${meta.id}_${chr}_imputed.vcf.gz.csi"), emit: imputed_vcf
 
     script:
     def list_file = "chunks_list_${meta.id}_${chr}.txt"
@@ -87,9 +85,8 @@ process GLIMPSE2_LIGATE {
     """
     ls -1v ${chunk_bcfs} > ${list_file}
 
-    GLIMPSE2_ligate --input ${list_file} --output ${output_name}.bcf
-    
-    bcftools view ${output_name}.bcf -Oz -o ${output_name}.vcf.gz --threads ${task.cpus}
-    bcftools index -t ${output_name}.vcf.gz --threads ${task.cpus}
+    GLIMPSE2_ligate --input ${list_file} \\
+                    --output ${output_name}.vcf.gz \\
+                    --threads ${task.cpus}
     """
 }

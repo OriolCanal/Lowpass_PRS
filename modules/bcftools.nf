@@ -1,6 +1,6 @@
 process BCFTOOLS_MPILEUP {
     tag "$meta.id"
-    label 'process_low'
+    label 'process_high'
     container 'quay.io/biocontainers/bcftools:1.23.1--hb2cee57_0'
 
     input:  tuple val(meta), path(bam), path(bai)
@@ -15,7 +15,7 @@ process BCFTOOLS_MPILEUP {
         -I -E -Q 20 -q 20 \\
         -Ob \\
         -o ${meta.id}.likelihoods.bcf \\
-        -@ $task.cpus \\
+        --threads $task.cpus \\
         $bam
 
     bcftools index --threads $task.cpus ${meta.id}.likelihoods.bcf

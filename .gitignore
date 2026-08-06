@@ -5,3 +5,5 @@ data/
 .nextflow/
 glimpse_reference/
 singularity_images/
+pipeline_info/
+1000_genomes_data/
